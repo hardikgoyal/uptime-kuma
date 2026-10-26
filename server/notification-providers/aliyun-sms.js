@@ -69,7 +69,7 @@ class AliyunSMS extends NotificationProvider {
         params.Signature = this.sign(params, notification.secretAccessKey);
         let config = {
             method: "POST",
-            url: "http://dysmsapi.aliyuncs.com/",
+            url: "https://dysmsapi.aliyuncs.com/",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
