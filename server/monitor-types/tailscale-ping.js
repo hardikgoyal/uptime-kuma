@@ -1,6 +1,6 @@
 const { MonitorType } = require("./monitor-type");
 const { UP, log } = require("../../src/util");
-const exec = require("child_process").exec;
+const { execFile } = require("child_process");
 
 /**
  * A TailscalePing class extends the MonitorType.
@@ -37,13 +37,13 @@ class TailscalePing extends MonitorType {
      * @throws Will throw an error if the command execution encounters any error.
      */
     async runTailscalePing(hostname, interval) {
-        let cmd = `tailscale ping ${hostname}`;
+        let args = [ "ping", "--", String(hostname) ];
 
-        log.debug("Tailscale", cmd);
+        log.debug("Tailscale", `tailscale ${args.join(" ")}`);
 
         return new Promise((resolve, reject) => {
             let timeout = interval * 1000 * 0.8;
-            exec(cmd, { timeout: timeout }, (error, stdout, stderr) => {
+            execFile("tailscale", args, { timeout: timeout }, (error, stdout, stderr) => {
                 // we may need to handle more cases if tailscale reports an error that isn't necessarily an error (such as not-logged in or DERP health-related issues)
                 if (error) {
                     reject(`Execution error: ${error.message}`);
