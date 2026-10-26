@@ -354,7 +354,7 @@ class GlobalpingMonitorType extends MonitorType {
      * @returns {boolean} True if the regex matches, false otherwise.
      */
     checkDNSRecordValueMatch(monitor, values, keyword) {
-        const regex = new RegExp(keyword, "i");
+        const needle = String(keyword).toLowerCase();
 
         switch (monitor.dns_resolve_type) {
             case "A":
@@ -373,7 +373,7 @@ class GlobalpingMonitorType extends MonitorType {
             case "SRV":
             case "SVCB":
             case "TXT":
-                return values.some((record) => regex.test(record));
+                return values.some((record) => String(record).toLowerCase().includes(needle));
         }
 
         return false;
