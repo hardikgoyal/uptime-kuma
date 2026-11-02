@@ -81,7 +81,7 @@
         "axios": "~0.34.0",
         "badge-maker": "~3.3.1",
         "bcryptjs": "~2.4.3",
-        "better-auth": "~1.6.11",
+        "better-auth": "~1.7.7",
         "better-sqlite3": "~12.11.1",
         "chardet": "~1.4.0",
         "cheerio": "~1.0.0",
@@ -237,7 +237,8 @@
             "@azure/identity": "npm:useless-module@1.0.0",
             "@azure/keyvault-keys": "npm:useless-module@1.0.0"
         },
-        "knex": "$knex"
+        "knex": "$knex",
+        "better-auth": "$better-auth"
     },
     "allowScripts": {
         "better-sqlite3@12.11.1": true,
